@@ -6,7 +6,7 @@ class MarvelClient
     )
   end
 
-  def comics
-    @client.comics(format: 'graphic novel', limit: 10, offset: 20)
+  def comics(params)
+    @client.comics(params)
   end
 end
