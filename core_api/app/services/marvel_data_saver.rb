@@ -1,8 +1,4 @@
 class MarvelDataSaver
-  def initialize
-
-  end
-
   def save(data)
     data[:data][:results].map &method(:create_comic)
   end
@@ -10,7 +6,7 @@ class MarvelDataSaver
   private
 
   def create_comic(hash)
-    Comic.create!(comic_params(hash))
+    Comic.find_or_create_by!(comic_params(hash))
   end
 
   def comic_params(hash)
