@@ -4,8 +4,7 @@ module Marvel
 
     desc 'List all comics from Marvell'
     get '/comics' do
-      marvel_client = MarvelClient.new
-      marvel_client.comics
+      {hello: 'hello'}
     end
   end
 end
