@@ -11,6 +11,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'grape'
 gem 'marvelite'
 gem 'rails', '~> 5.0.2'
+gem 'rack-cors'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
@@ -35,4 +36,3 @@ end
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'

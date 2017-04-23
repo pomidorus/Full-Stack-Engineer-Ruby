@@ -2,6 +2,8 @@
 
 ### Deploy
 `git subtree push --prefix core_api heroku master`
+`heroku run --app calm-hollows-82969 rake db:migrate`
+`heroku run --app calm-hollows-82969 rake marvel:grab_data`
 
 ### Production
 https://calm-hollows-82969.herokuapp.com
