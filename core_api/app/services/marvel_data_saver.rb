@@ -1,7 +1,9 @@
 class MarvelDataSaver
   YEAR_REG = /[(](\d+)[)]/
+  NUMBER_REG = /#\d+/
+  NEGATIVE_NUMBER_REG = /#-\d+/
   YEAR_NUMBER_REG = /[(]\d+[)]\s+#\d+/
-  
+
   def save(data)
     data[:data][:results].map &method(:create_comic)
   end
@@ -28,6 +30,6 @@ class MarvelDataSaver
   end
 
   def clear_title(string)
-    string.gsub(YEAR_NUMBER_REG, '').strip
+    string.gsub(YEAR_REG, '').gsub(NUMBER_REG, '').gsub(NEGATIVE_NUMBER_REG, '').strip
   end
 end
