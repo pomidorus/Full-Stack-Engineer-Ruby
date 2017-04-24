@@ -1,0 +1,61 @@
+$comic-shadow-x: 4px;
+$comic-shadow-y: 4px;
+$comic-shadow-blur: 14px;
+$comic-shadow-color: #222;
+
+$thumbnail-width: 200px;
+
+
+.Comic {
+  position: relative;
+
+  margin: 8px 8px 8px 8px;
+  box-shadow: $comic-shadow-x $comic-shadow-y $comic-shadow-blur $comic-shadow-color;
+
+  .Thumbnail img {
+    width: $thumbnail-width;
+    display: block;
+  }
+
+  .Overlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+
+    .Cover {
+      visibility: hidden;
+      width: 100%;
+      height: 100%;
+    }
+
+    .Description {
+      color: white;
+      visibility: hidden;
+      position: absolute;
+      bottom: 0px;
+
+      .Title {
+        text-align: left;
+        width: 75%;
+        line-height: 0.9em;
+        font-size: 1.8em;
+        font-weight: bold;
+      }
+    }
+
+    &:hover {
+      .Cover {
+        visibility: visible;
+        background-color: #222;
+        opacity: 0.7;
+      }
+
+      .Description {
+        visibility: visible;
+      }
+    }
+  }
+
+}
