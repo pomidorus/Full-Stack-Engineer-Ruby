@@ -17,11 +17,11 @@ class ComicsCollection extends Component {
     });
 
     fetch(request)
-        .then(response => response.json())
-        .then(json => {
-          json['comics'].forEach(this.add_comics_to_state);
-          this.forceUpdate();
-        });
+      .then(response => response.json())
+      .then(json => {
+        json['comics'].forEach(this.add_comics_to_state);
+        this.forceUpdate();
+      });
   };
 
   componentWillMount() {
@@ -31,7 +31,13 @@ class ComicsCollection extends Component {
   render() {
     var comics = this.state.comics.map(function(comic) {
       return (
-          <Comic title={comic.title} key={comic.comic_id} thumbnail_url={comic.thumbnail_url}/>
+        <Comic
+          title={comic.title}
+          key={comic.comic_id}
+          thumbnail_url={comic.thumbnail_url}
+          issue_number={comic.issue_number}
+          year={comic.year}
+        />
       )}, this);
 
     return(
