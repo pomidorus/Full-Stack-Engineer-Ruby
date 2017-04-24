@@ -1,5 +1,5 @@
 class MarvelGrabber
-  LIMIT = 10
+  LIMIT = 30
   PAGES = 3
   FORMAT = 'comic'
   FORMAT_TYPE = 'comic'
