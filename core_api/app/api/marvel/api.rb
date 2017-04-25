@@ -17,6 +17,15 @@ module Marvel
       def paginated_search_cache_name
         "comics/#{Comic.count}-#{params[:page]}/#{params[:search]}/ordered_comics"
       end
+
+      def comic
+        @comic ||= Comic.find_by_comic_id(params[:id])
+      end
+
+      def comic_not_found
+        status 404
+        { error: 'Comic with this ID do not exists'}
+      end
     end
 
     desc 'List all comics from Marvell'
@@ -41,8 +50,9 @@ module Marvel
       requires :id, type: Integer, desc: 'Comic ID from Marvel DB'
     end
     post '/comics/:id/upvote' do
-
-      { upvoted: true }
+      return comic_not_found if comic.nil?
+      comic.update_attributes(upvoted: !comic.upvoted)
+      { upvoted: comic.upvoted }
     end
   end
 end
