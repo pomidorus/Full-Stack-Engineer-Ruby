@@ -12,8 +12,10 @@ class Comic < ApplicationRecord
   validates :thumbnail_url, presence: true
   validates :characters, presence: true, allow_blank: true
 
+  scope :all_with_images, -> { where.not("thumbnail_url ILIKE '%image_not_available.jpg%'") }
+
   def self.all_ordered_by_date
-    all.sort_by{|c| [c.year, c.issue_number]}.reverse
+    all_with_images.sort_by{|c| [c.year, c.issue_number]}.reverse
   end
 
   def self.search_ordered_by_date(string)
