@@ -1,6 +1,6 @@
 class MarvelGrabber
   LIMIT = 30
-  PAGES = 3
+  PAGES = 10
   FORMAT = 'comic'
   FORMAT_TYPE = 'comic'
   ORDER_BY = '-modified'
