@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import Comic from "./comic";
+import './ComicCollection.css';
 
 class ComicsCollection extends Component {
   state = {
     comics: [],
+    page: 1
   };
 
   add_comics_to_state = (element, index, array) => {
     this.state.comics.push(element);
   };
 
+  previous_page = () => {
+    console.log('ok');
+  };
+
   request_comics = () => {
-    var request = new Request('https://calm-hollows-82969.herokuapp.com/comics', {
+    var request = new Request('https://calm-hollows-82969.herokuapp.com/comics?page=' + this.state.page, {
       method: 'GET',
       mode: 'cors'
     });
@@ -42,7 +48,13 @@ class ComicsCollection extends Component {
 
     return(
         <div className="ComicsCollection">
-          {comics}
+          <div className="Comics">
+            {comics}
+          </div>
+          <div className="Navigation">
+            <div className="Previous" onClick={this.previous_page}>&larr; PREVIOUS PAGE</div>
+            <div className="Next" onClick={this.previous_page}>NEXT PAGE &rarr;</div>
+          </div>
         </div>
     );
   }

@@ -1,0 +1,22 @@
+.ComicsCollection {
+  .Comics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .Navigation {
+    margin: 32px 64px;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      cursor: pointer;
+      padding: 8px 16px 8px 16px;
+      margin: 16px 16px;
+      background-color: white;
+      color: red;
+      font-weight: bold;
+    }
+  }
+}
