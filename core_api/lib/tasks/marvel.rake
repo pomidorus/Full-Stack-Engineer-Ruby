@@ -1,3 +1,5 @@
+require 'elasticsearch/rails/tasks/import'
+
 namespace :marvel do
   desc 'grab data from Marvel API to app DB'
   task grab_data: :environment do
@@ -8,6 +10,10 @@ namespace :marvel do
 
     puts 'Starting collect data...'
     marvel_grabber.collect_data
+    puts '...completed'
+
+    puts 'Auto-index with elasticsearch...'
+    Comic.import
     puts '...completed'
   end
 

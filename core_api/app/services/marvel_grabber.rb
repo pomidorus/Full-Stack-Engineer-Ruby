@@ -22,6 +22,7 @@ class MarvelGrabber
 
       data = @marvel_client.comics(params)
       @data_saver.save(data)
+      puts "Complete #{page} page"
     end
   end
 end

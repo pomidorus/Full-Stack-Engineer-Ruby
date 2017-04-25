@@ -1,4 +1,7 @@
 class Comic < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   validates :comic_id, presence: true
   validates :title, presence: true
   validates :year, presence: true, allow_nil: false

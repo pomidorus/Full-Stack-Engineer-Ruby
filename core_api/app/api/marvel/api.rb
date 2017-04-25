@@ -5,6 +5,7 @@ module Marvel
     desc 'List all comics from Marvell'
     params do
       requires :page, type: Integer, desc: 'Number of the page'
+      optional :search, type: String, desc: 'Search comics by characters'
     end
     get '/comics' do
       Rails.cache.fetch("comics/#{Comic.count}-#{params[:page]}/ordered_comics", expires_in: 12.hours) do
