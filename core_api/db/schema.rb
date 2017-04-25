@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170423093537) do
+ActiveRecord::Schema.define(version: 20170425170328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20170423093537) do
     t.integer  "issue_number"
     t.string   "thumbnail_url"
     t.string   "characters"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "upvoted",       default: false
     t.index ["issue_number"], name: "index_comics_on_issue_number", using: :btree
     t.index ["year"], name: "index_comics_on_year", using: :btree
   end
