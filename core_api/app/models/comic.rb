@@ -12,4 +12,8 @@ class Comic < ApplicationRecord
   def self.all_ordered_by_date
     all.sort_by{|c| [c.year, c.issue_number]}.reverse
   end
+
+  def self.search_ordered_by_date(string)
+    search(string).records.sort_by{|c| [c.year, c.issue_number]}.reverse
+  end
 end
