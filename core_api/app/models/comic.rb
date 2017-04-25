@@ -1,4 +1,5 @@
 require 'elasticsearch'
+require 'elasticsearch/model'
 
 class Comic < ApplicationRecord
   include Elasticsearch::Model
