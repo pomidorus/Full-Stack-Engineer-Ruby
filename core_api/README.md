@@ -9,7 +9,7 @@
 
 `heroku run --app calm-hollows-82969 rake marvel:remove_data`
 
-rake environment elasticsearch:import:all FORCE=y
+`heroku run --app calm-hollows-82969 rake environment elasticsearch:import:model CLASS='Comic' FORCE=y`
 
 ### Production
 https://calm-hollows-82969.herokuapp.com
