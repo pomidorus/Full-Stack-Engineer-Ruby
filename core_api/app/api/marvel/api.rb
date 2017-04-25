@@ -35,5 +35,14 @@ module Marvel
         end
       end
     end
+
+    desc 'Upvote comic'
+    params do
+      requires :id, type: Integer, desc: 'Comic ID from Marvel DB'
+    end
+    post '/comics/:id/upvote' do
+
+      { upvoted: true }
+    end
   end
 end

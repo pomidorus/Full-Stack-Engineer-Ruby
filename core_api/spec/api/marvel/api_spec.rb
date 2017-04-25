@@ -26,11 +26,12 @@ describe Marvel::API, type: :request do
       post "/comics/#{comic_id}/upvote"
       hash_response = JSON.parse(response.body)
 
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(201)
       expect(hash_response['upvoted']).to eq(true)
     end
   end
 
+  # TODO: Do not find a quick way to test elastic search with rspec
   # describe 'GET /comics?page=&search=' do
   #   it 'returns paginated response' do
   #     get '/comics', params: { page: 1, search: 'Hulk' }
