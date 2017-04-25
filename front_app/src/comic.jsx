@@ -8,7 +8,6 @@ class Comic extends Component {
 
   upvote_comic = () => {
     this.setState({isUpvoted: !this.state.isUpvoted});
-    console.log('ok');
   };
 
   render() {
