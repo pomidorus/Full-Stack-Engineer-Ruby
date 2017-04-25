@@ -1,3 +1,5 @@
+require 'elasticsearch'
+
 class Comic < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
