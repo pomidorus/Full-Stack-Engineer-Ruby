@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Comic from "./comic";
 import './ComicCollection.css';
+import logo from './marvel_logo.png';
 
 class ComicsCollection extends Component {
   state = {
@@ -58,6 +59,12 @@ class ComicsCollection extends Component {
 
     return(
         <div className="ComicsCollection">
+          <div className="Search">
+            <div className="Logo">
+              <img src={logo}/>
+            </div>
+            <input />
+          </div>
           <div className="Comics">
             {comics}
           </div>

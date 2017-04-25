@@ -1,3 +1,15 @@
+.ComicsCollection .Search {
+  padding: 16px 0;
+  background-color: red; }
+
+.ComicsCollection .Search .Logo {
+  margin-bottom: 8px; }
+
+.ComicsCollection .Search input {
+  width: 80%;
+  padding: 8px 8px;
+  font-size: 2em; }
+
 .ComicsCollection .Comics {
   display: flex;
   flex-wrap: wrap;
@@ -7,10 +19,11 @@
   margin: 32px 64px;
   display: flex;
   justify-content: space-between; }
-  .ComicsCollection .Navigation div {
-    cursor: pointer;
-    padding: 8px 16px 8px 16px;
-    margin: 16px 16px;
-    background-color: white;
-    color: red;
-    font-weight: bold; }
+
+.ComicsCollection .Navigation div {
+  cursor: pointer;
+  padding: 8px 16px 8px 16px;
+  margin: 16px 16px;
+  background-color: white;
+  color: red;
+  font-weight: bold; }

@@ -1,4 +1,19 @@
 .ComicsCollection {
+  .Search {
+    padding: 16px 0;
+    background-color:red;
+
+    .Logo {
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px 8px;
+      font-size: 2em;
+    }
+  }
+
   .Comics {
     display: flex;
     flex-wrap: wrap;
