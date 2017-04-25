@@ -81,6 +81,7 @@ class ComicsCollection extends Component {
         <Comic
           title={comic.title}
           key={comic.comic_id}
+          comic_id={comic.comic_id}
           thumbnail_url={comic.thumbnail_url}
           issue_number={comic.issue_number}
           year={comic.year}

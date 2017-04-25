@@ -6,13 +6,23 @@ class Comic extends Component {
     isUpvoted: false,
   };
 
-  upvote_comic = () => {
-    this.setState({isUpvoted: !this.state.isUpvoted});
+  upvote_comic_request = () => {
+    var request = new Request('https://calm-hollows-82969.herokuapp.com/comics/' + this.props.comic_id + '/upvote', {
+      method: 'POST',
+      mode: 'cors'
+    });
+
+    fetch(request)
+        .then(response => response.json())
+        .then(json => {
+          this.setState({isUpvoted: json['upvoted']});
+          this.forceUpdate();
+        });
   };
 
   render() {
     return(
-      <div className={this.state.isUpvoted ? 'Comic Upvoted' : 'Comic'} onClick={this.upvote_comic}>
+      <div className={this.state.isUpvoted ? 'Comic Upvoted' : 'Comic'} onClick={this.upvote_comic_request}>
         <div className="Thumbnail">
           <img src={this.props.thumbnail_url} alt={this.props.title}/>
         </div>
