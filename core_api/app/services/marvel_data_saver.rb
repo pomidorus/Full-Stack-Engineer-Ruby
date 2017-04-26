@@ -12,6 +12,8 @@ class MarvelDataSaver
 
   def create_comic(hash)
     Comic.find_or_create_by!(comic_params(hash))
+  rescue NoMethodError
+    puts "Hash #{hash} is broken for parsing"
   end
 
   def comic_params(hash)
