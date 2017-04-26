@@ -4,8 +4,10 @@
 
 https://frozen-inlet-64283.herokuapp.com
 
-More description
+Technical description:
+
 [backend](core_api/README.md)
+
 [frontend](front_app/README.md[) 
 
 ### Challenge spec:
