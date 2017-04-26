@@ -246,6 +246,7 @@ DEPENDENCIES
   byebug
   dotenv-rails
   factory_girl_rails
+  grape
   grape-active_model_serializers
   kaminari
   listen (~> 3.0.5)
