@@ -53,7 +53,7 @@ class ComicsCollection extends Component {
       .then(response => response.json())
       .then(json => {
         this.setState({comics: []})
-        json['comics'].forEach(this.add_comics_to_state);
+        json.forEach(this.add_comics_to_state);
         this.forceUpdate();
       });
   };
