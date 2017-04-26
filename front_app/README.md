@@ -14,4 +14,4 @@ to the api_app. And handle page state.
 Comic component send request for upvoting to api_app and store state of voting status.
 
 Main page
-[[http://res.cloudinary.com/dgetfyyu1/image/upload/v1493200794/screen_1_xxwzud.png]]
+![main page](http://bit.ly/2q4vwz9)
