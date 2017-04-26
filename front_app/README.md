@@ -1,6 +1,9 @@
 # Marvel frontend application
 View, search & upvote your favorite comics
 
+- React.js
+- Sass
+
 ### Production
 https://frozen-inlet-64283.herokuapp.com
 
