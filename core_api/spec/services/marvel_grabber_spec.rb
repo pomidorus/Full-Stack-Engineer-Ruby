@@ -7,6 +7,7 @@ describe MarvelGrabber do
 
   describe '#collect_data' do
     before do
+      # hack for VCR requests
       client.client.class.send(:define_method, :ts, lambda { 55555 })
       Comic.send(:define_method, :id, lambda { 111 })
     end
