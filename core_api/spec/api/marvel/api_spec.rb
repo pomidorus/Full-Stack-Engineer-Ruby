@@ -15,7 +15,7 @@ describe Marvel::API, type: :request do
       hash_response = JSON.parse(response.body)
 
       expect(response.status).to eq(200)
-      expect(hash_response['comics'].count).to eq(limit)
+      expect(hash_response.count).to eq(limit)
     end
   end
 

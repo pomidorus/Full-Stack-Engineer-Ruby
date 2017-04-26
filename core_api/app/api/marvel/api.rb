@@ -1,6 +1,8 @@
 module Marvel
   class API < Grape::API
     format :json
+    formatter :json, Grape::Formatter::ActiveModelSerializers
+
     helpers do
       def cache_key
         "comics/#{params[:page]}/ordered_comics"
@@ -33,9 +35,9 @@ module Marvel
     params do
       requires :page, type: Integer, desc: 'Number of the page'
     end
-    get '/comics' do
+    get '/comics', each_serializer: ComicSerializer, root: 'comics' do
       Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-        { comics: comics }
+        comics
       end
     end
 
@@ -43,9 +45,9 @@ module Marvel
     params do
       requires :q, type: String, desc: 'Search query'
     end
-    get '/comics/search' do
+    get '/comics/search', each_serializer: ComicSerializer, root: 'comics' do
       Rails.cache.fetch(search_cache_key, expires_in: 12.hours) do
-        { comics: search_comics }
+        search_comics
       end
     end
 

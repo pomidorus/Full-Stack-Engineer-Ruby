@@ -10,12 +10,13 @@ end
 gem 'bonsai-elasticsearch-rails'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'grape'
+gem 'grape-active_model_serializers'
+gem 'kaminari'
 gem 'marvelite'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
 gem 'rails', '~> 5.0.2'
-gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platform: :mri
