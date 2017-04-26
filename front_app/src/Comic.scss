@@ -1,15 +1,18 @@
 $comic-shadow-x: 4px;
 $comic-shadow-y: 4px;
 $comic-shadow-blur: 14px;
+$comic-margin: 8px;
+
 $comic-shadow-color: #222;
+$year-background-color: #444;
+$cover-background-color: #222;
 
 $thumbnail-width: 200px;
-
 
 .Comic {
   position: relative;
 
-  margin: 8px 8px 8px 8px;
+  margin: $comic-margin $comic-margin;
   box-shadow: $comic-shadow-x $comic-shadow-y $comic-shadow-blur $comic-shadow-color;
 
   .Heart {
@@ -100,7 +103,7 @@ $thumbnail-width: 200px;
         }
 
         .Year {
-          background-color: #444;
+          background-color: $year-background-color;
           font-style: italic;
           padding: 7px 5px 7px 5px;
         }
@@ -110,7 +113,7 @@ $thumbnail-width: 200px;
     &:hover {
       .Cover {
         visibility: visible;
-        background-color: #222;
+        background-color: $cover-background-color;
         opacity: 0.7;
       }
 
