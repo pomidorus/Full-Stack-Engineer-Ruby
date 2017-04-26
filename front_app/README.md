@@ -10,6 +10,10 @@ https://frozen-inlet-64283.herokuapp.com
 ### Deploy
 `git subtree push --prefix front_app heroku_react master`
 
+### Improvements
+
+Reduce images size using some cloud services, Cloudinary for example
+
 ## Application
 
 Basically app use two components: comic collection & comic. Comic collection send comic and search request
@@ -21,3 +25,4 @@ Main page
 
 Search character
 ![main page](screen_2.png)
+
