@@ -1,6 +1,6 @@
 class MarvelGrabber
-  LIMIT = 30
-  PAGES = 10
+  LIMIT = ENV['GRABBER_LIMIT']
+  PAGES = ENV['GRABBER_PAGES']
   FORMAT = 'comic'
   FORMAT_TYPE = 'comic'
   ORDER_BY = '-modified'
