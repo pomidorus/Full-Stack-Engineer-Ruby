@@ -4,6 +4,12 @@ API application for store, cache, search Marvel API Data
 ### Production
 https://calm-hollows-82969.herokuapp.com
 
+- ruby 2.4.0
+- rails 5
+- grape
+- elasticsearch
+- rspec
+
 ### Deploy
 `git subtree push --prefix core_api heroku master`
 
