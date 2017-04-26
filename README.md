@@ -1,18 +1,12 @@
 # Streetbees Full Stack Engineer (Ruby) position
 
-[Role description](https://github.com/Streetbees/full-stack-engineer-ruby/wiki/Role-description)
+# Live Demo
 
-[Requirements](https://github.com/Streetbees/full-stack-engineer-ruby/wiki/Requirements)
+https://frozen-inlet-64283.herokuapp.com
 
-[Benefits](https://github.com/Streetbees/full-stack-engineer-ruby/wiki/Benefits)
-
-
-### To apply you shoud follow the instructions below:
-
-- Fork this repo;
-- Look at the specification below and do your thing;
-- When ready open a pull into the master branch of this repo;
-- We will then review the code and if necessary discuss within the pull request.
+More description
+[backend](core_api/README.md)
+[frontend](front_app/README.md[) 
 
 ### Challenge spec:
 
