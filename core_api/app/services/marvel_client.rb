@@ -1,4 +1,6 @@
 class MarvelClient
+  attr_reader :client
+
   def initialize
     @client = Marvelite::API::Client.new(
       public_key: ENV['MARVEL_PUBLIC_KEY'],
