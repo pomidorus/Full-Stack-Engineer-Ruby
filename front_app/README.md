@@ -15,3 +15,6 @@ Comic component send request for upvoting to api_app and store state of voting s
 
 Main page
 ![main page](screen_1.png)
+
+Search character
+![main page](screen_2.png)
