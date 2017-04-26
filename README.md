@@ -8,7 +8,7 @@ Technical description:
 
 [backend](core_api/README.md)
 
-[frontend](front_app/README.md[) 
+[frontend](front_app/README.md) 
 
 ### Challenge spec:
 
