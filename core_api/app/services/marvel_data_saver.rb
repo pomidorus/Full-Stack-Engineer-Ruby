@@ -6,6 +6,8 @@ class MarvelDataSaver
 
   def save(data)
     data[:data][:results].map &method(:create_comic)
+  rescue NoMethodError
+    puts "Data #{data.inspect} is broken for parsing"
   end
 
   private

@@ -23,4 +23,11 @@ namespace :marvel do
     Comic.delete_all
     puts '...completed'
   end
+
+  desc 'clear Rails cache'
+  task clear_cache: :environment do
+    puts 'Starting deleting cache...'
+    Rails.cache.clear
+    puts '...completed'
+  end
 end
