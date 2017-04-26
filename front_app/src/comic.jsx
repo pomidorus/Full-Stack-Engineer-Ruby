@@ -32,6 +32,7 @@ class Comic extends Component {
         </div>
         <div className="Overlay">
           <div className="Cover" />
+          <div className="Heart"></div>
           <div className="Description">
             <div className="Title">
               {this.props.title.toUpperCase()}

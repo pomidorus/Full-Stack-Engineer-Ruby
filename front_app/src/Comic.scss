@@ -12,15 +12,46 @@ $thumbnail-width: 200px;
   margin: 8px 8px 8px 8px;
   box-shadow: $comic-shadow-x $comic-shadow-y $comic-shadow-blur $comic-shadow-color;
 
+  .Heart {
+    position: absolute;
+    right: 0;
+    top: 26px;
+    margin-right: 26px;
+    width: 30px;
+    height: 27px;
+  }
+
   .Thumbnail img {
     width: $thumbnail-width;
     display: block;
+  }
+
+  &:not(.Upvoted) {
+    .Overlay {
+      &:hover {
+        .Heart {
+          background: url('heart_off.png') 0 0;
+
+          &:hover {
+            background: url('heart_hover.png') 0 0;
+          }
+        }
+      }
+    }
   }
 
   &.Upvoted {
 
     .Overlay {
       border: 11px solid red;
+
+      .Heart {
+        background: url('heart_on.png') 0 0;
+        top: 11px;
+        margin-right: 11px;
+        width: 40px;
+        height: 37px;
+      }
 
       .Description {
         padding: 0 0;
@@ -88,5 +119,4 @@ $thumbnail-width: 200px;
       }
     }
   }
-
 }
