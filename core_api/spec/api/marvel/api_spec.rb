@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Marvel::API, type: :request do
+  let(:limit) { 16 }
+
   describe 'GET /comics?page=' do
     before do
       20.times do
@@ -13,7 +15,7 @@ describe Marvel::API, type: :request do
       hash_response = JSON.parse(response.body)
 
       expect(response.status).to eq(200)
-      expect(hash_response['comics'].count).to eq(12)
+      expect(hash_response['comics'].count).to eq(limit)
     end
   end
 
@@ -24,7 +26,7 @@ describe Marvel::API, type: :request do
     context 'when upvoted true' do
       let(:upvoted) { false }
       it 'returns upvote comic' do
-        post "/comics/#{comic_id}/upvote"
+        post "/comics/#{comic_id}/upvote", params: { page: 1 }
         hash_response = JSON.parse(response.body)
 
         expect(response.status).to eq(201)
@@ -35,7 +37,7 @@ describe Marvel::API, type: :request do
     context 'when upvoted false' do
       let(:upvoted) { true }
       it 'returns upvote comic' do
-        post "/comics/#{comic_id}/upvote"
+        post "/comics/#{comic_id}/upvote", params: { page: 1 }
         hash_response = JSON.parse(response.body)
 
         expect(response.status).to eq(201)
@@ -47,7 +49,7 @@ describe Marvel::API, type: :request do
       let(:upvoted) { true }
 
       it 'returns error' do
-        post "/comics/2222/upvote"
+        post "/comics/2222/upvote", params: { page: 1 }
         hash_response = JSON.parse(response.body)
 
         expect(response.status).to eq(404)
@@ -56,14 +58,11 @@ describe Marvel::API, type: :request do
     end
   end
 
-  # TODO: Do not find a quick way to test elastic search with rspec
-  # describe 'GET /comics?page=&search=' do
-  #   it 'returns paginated response' do
-  #     get '/comics', params: { page: 1, search: 'Hulk' }
-  #     hash_response = JSON.parse(response.body)
-  #
-  #     expect(response.status).to eq(200)
-  #     expect(hash_response['comics'].count).to eq(1)
-  #   end
-  # end
+  describe 'GET /comics/search?q=' do
+    it 'returns paginated response' do
+      get '/comics/search', params: { q: 'Hulk X-Man' }
+
+      expect(response.status).to eq(200)
+    end
+  end
 end

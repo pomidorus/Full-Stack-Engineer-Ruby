@@ -2,20 +2,21 @@ module Marvel
   class API < Grape::API
     format :json
     helpers do
-      def comics_paginated
+      def cache_key
+        "comics/#{params[:page]}/ordered_comics"
+      end
+
+      def search_cache_key
+        q_key = params[:q].gsub(/[^0-9A-Za-z]/, '').strip
+        "comics/#{q_key}/ordered_comics"
+      end
+
+      def comics
         ComicPaginator.paginate(Comic.all_ordered_by_date, params[:page])
       end
 
-      def comics_paginated_search
-        ComicPaginator.paginate(Comic.search_ordered_by_date(params[:search]), params[:page])
-      end
-
-      def paginated_cache_name
-        "comics/#{Comic.count}-#{params[:page]}/ordered_comics"
-      end
-
-      def paginated_search_cache_name
-        "comics/#{Comic.count}-#{params[:page]}/#{params[:search]}/ordered_comics"
+      def search_comics
+        Comic.search_ordered_by_date(params[:q])
       end
 
       def comic
@@ -31,26 +32,33 @@ module Marvel
     desc 'List all comics from Marvell'
     params do
       requires :page, type: Integer, desc: 'Number of the page'
-      optional :search, type: String, desc: 'Search comics by characters'
     end
     get '/comics' do
-      if params[:search].nil?
-        Rails.cache.fetch(paginated_cache_name, expires_in: 12.hours) do
-          { comics: comics_paginated }
-        end
-      else
-        Rails.cache.fetch(paginated_search_cache_name, expires_in: 12.hours) do
-          { comics: comics_paginated_search }
-        end
+      Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+        { comics: comics }
+      end
+    end
+
+    desc 'Search comic by query'
+    params do
+      requires :q, type: String, desc: 'Search query'
+    end
+    get '/comics/search' do
+      Rails.cache.fetch(search_cache_key, expires_in: 12.hours) do
+        { comics: search_comics }
       end
     end
 
     desc 'Upvote comic'
     params do
       requires :id, type: Integer, desc: 'Comic ID from Marvel DB'
+      requires :page, type: Integer, desc: 'Number of the page'
     end
     post '/comics/:id/upvote' do
       return comic_not_found if comic.nil?
+
+      Rails.cache.delete(cache_key)
+
       comic.update_attributes(upvoted: !comic.upvoted)
       { upvoted: comic.upvoted }
     end
