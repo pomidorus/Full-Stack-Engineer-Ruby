@@ -3,26 +3,30 @@ import './Comic.css';
 
 class Comic extends Component {
   state = {
-    isUpvoted: false,
+    upvoted: this.props.upvoted,
   };
 
-  upvote_comic_request = () => {
+  upvote_comic_request = (page) => {
     var request = new Request('https://calm-hollows-82969.herokuapp.com/comics/' + this.props.comic_id + '/upvote', {
       method: 'POST',
-      mode: 'cors'
+      mode: 'cors',
+      body: JSON.stringify({page: page}),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
     });
 
     fetch(request)
-        .then(response => response.json())
-        .then(json => {
-          this.setState({isUpvoted: json['upvoted']});
-          this.forceUpdate();
-        });
+      .then(response => response.json())
+      .then(json => {
+        this.setState({upvoted: json['upvoted']});
+        this.forceUpdate();
+      });
   };
 
   render() {
     return(
-      <div className={this.state.isUpvoted ? 'Comic Upvoted' : 'Comic'} onClick={this.upvote_comic_request}>
+      <div className={this.state.upvoted ? 'Comic Upvoted' : 'Comic'} onClick={() => this.upvote_comic_request(this.props.page)}>
         <div className="Thumbnail">
           <img src={this.props.thumbnail_url} alt={this.props.title}/>
         </div>

@@ -6,7 +6,7 @@ import logo from './marvel_logo.png';
 class ComicsCollection extends Component {
   state = {
     comics: [],
-    page: 2,
+    page: 1,
     search: ''
   };
 
@@ -14,13 +14,18 @@ class ComicsCollection extends Component {
     this.state.comics.push(element);
   };
 
-  search_comics = (event) => {
-    if ((event.keyCode === 13) &&  (this.state.search == ''))  {
-      this.request_comics(1);
-    }
+  search_comics = (key, term, page) => {
+    var url;
+    if (key === 13) {
+      if (term === '') {
+        url = 'https://calm-hollows-82969.herokuapp.com/comics?page=' + page;
+        this.request_comics(url);
+      }
 
-    if ((event.keyCode === 13) &&  (this.state.search != ''))  {
-      this.search_comics_request(1, this.state.search);
+      if (term !== '') {
+        url = 'https://calm-hollows-82969.herokuapp.com/comics/search?q=' + term;
+        this.request_comics(url);
+      }
     }
   }
 
@@ -29,35 +34,17 @@ class ComicsCollection extends Component {
     this.setState({comics: []})
   }
 
-  previous_page = () => {
-    if (this.state.page > 1) {
-      this.setState({page: this.state.page - 1});
-      this.request_comics(this.state.page);
+
+  view_page = (page) => {
+    if (page >= 1) {
+      var url = 'https://calm-hollows-82969.herokuapp.com/comics?page=' + page;
+      this.request_comics(url);
+      this.setState({page: page});
     }
-  };
+  }
 
-  next_page = () => {
-    this.setState({page: this.state.page + 1});
-    this.request_comics(this.state.page);
-  };
-
-  search_comics_request = (page, search) => {
-    var request = new Request('https://calm-hollows-82969.herokuapp.com/comics?page=' + page +'&search=' + search, {
-      method: 'GET',
-      mode: 'cors'
-    });
-
-    fetch(request)
-        .then(response => response.json())
-        .then(json => {
-          this.setState({comics: []})
-          json['comics'].forEach(this.add_comics_to_state);
-          this.forceUpdate();
-        });
-  };
-
-  request_comics = (page) => {
-    var request = new Request('https://calm-hollows-82969.herokuapp.com/comics?page=' + page, {
+  request_comics = (url) => {
+    var request = new Request(url, {
       method: 'GET',
       mode: 'cors'
     });
@@ -72,7 +59,8 @@ class ComicsCollection extends Component {
   };
 
   componentWillMount() {
-    this.request_comics(1);
+    var url = 'https://calm-hollows-82969.herokuapp.com/comics?page=1'
+    this.request_comics(url);
   }
 
   render() {
@@ -85,6 +73,8 @@ class ComicsCollection extends Component {
           thumbnail_url={comic.thumbnail_url}
           issue_number={comic.issue_number}
           year={comic.year}
+          page={this.state.page}
+          upvoted={comic.upvoted}
         />
       )}, this);
 
@@ -94,17 +84,17 @@ class ComicsCollection extends Component {
             <div className="Logo">
               <img src={logo} alt="logo"/>
             </div>
-            <input onChange={this.update_search_term} onKeyDown={this.search_comics} />
+            <input onChange={this.update_search_term} onKeyDown={(event) => this.search_comics(event.keyCode, this.state.search, this.state.page)} />
           </div>
 
           <div className="Comics">
             {comics}
           </div>
 
-          { this.state.search == '' &&
+          { this.state.search === '' &&
             <div className="Navigation">
-              <div className="Previous" onClick={this.previous_page}>&larr; PREVIOUS PAGE</div>
-              <div className="Next" onClick={this.next_page}>NEXT PAGE &rarr;</div>
+              <div className="Previous" onClick={() => this.view_page(this.state.page - 1)}>&larr; PREVIOUS PAGE</div>
+              <div className="Next" onClick={() => this.view_page(this.state.page + 1)}>NEXT PAGE &rarr;</div>
             </div>
           }
         </div>
