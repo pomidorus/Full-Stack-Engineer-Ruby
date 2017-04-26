@@ -22,6 +22,11 @@ clear rails cache: `heroku run --app calm-hollows-82969 rake marvel:clear_cache`
 Marvel API do not have options for sorting comics properly as filtering comics wich do not have cover image.
 So I deciced to grab Marvel data into app database
 
-It is not big - `35_000` records. Right now in the app DB ~ `9_000` records
+It is not big - `35_000` records. Right now in the app DB ~ `5_000` records
 
 For API endpoints I use Rails cache. So it works very fast regarding native API
+
+
+## Search
+
+Search implemented with elasticsearch. It will return first 10 records, due to default behaviour of elastic search (for pagination purpose)

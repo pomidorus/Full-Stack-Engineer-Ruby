@@ -19,6 +19,6 @@ class Comic < ApplicationRecord
   end
 
   def self.search_ordered_by_date(string)
-    search(string).records.all_with_images.sort_by{|c| [c.year, c.issue_number]}.reverse
+    search(string).page(1).records.all_with_images.sort_by{|c| [c.year, c.issue_number]}.reverse
   end
 end
